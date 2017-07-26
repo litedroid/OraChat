@@ -1,11 +1,36 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
+        <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+        <!--<item name="colorAccent">@color/colorAccent</item>-->
+    </style>
+
+
+    <style name="orange_menu_text" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/ora_orange</item>
+        <item name="android:textSize">@dimen/text_size_large</item>
+    </style>
+
+    <style name="black_bold_menu_text" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/ora_black</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/text_size_large</item>
+    </style>
+
+    <style name="black_label_text" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/ora_black</item>
+        <item name="android:textSize">@dimen/text_size_large</item>
+    </style>
+
+    <style name="ora_edit_text" parent="@android:style/Widget.EditText">
+        <item name="android:background">#00000000</item>
+        <item name="android:textColor">@color/ora_black</item>
+        <item name="android:textColorHint">@color/ora_grey_text</item>
+        <item name="android:textSize">@dimen/text_size_large</item>
+        <item name="android:singleLine">true</item>
     </style>
 
 </resources>

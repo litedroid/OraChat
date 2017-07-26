@@ -18,6 +18,22 @@ public class ApplicationSettings
         editor = settings.edit();
     }
 
+    public boolean isLoggedIn()
+    {
+        return settings.getBoolean(Constants.SETTINGS_LOGGED_IN, false);
+    }
+
+    public void setLoggedIn()
+    {
+        editor.putBoolean(Constants.SETTINGS_LOGGED_IN, true).commit();
+    }
+
+    public void clearLoggedIn()
+    {
+        editor.putBoolean(Constants.SETTINGS_LOGGED_IN, false).commit();
+    }
+
+
     public static ApplicationSettings sharedSettings()
     {
         if (applicationSettings == null)

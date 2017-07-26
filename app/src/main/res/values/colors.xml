@@ -7,6 +7,8 @@
     <!-- Ora colors -->
     <color name="ora_orange">#F5A523</color>
     <color name="ora_black">#020202</color>
-    <color name="ora_light_grey">#8E8E94</color>
+    <color name="ora_dark_grey">#8E8E94</color>
+    <color name="ora_grey_text">#C7C7CC</color>
+    <color name="ora_grey_header">#E5FAFAFA</color>
 
 </resources>
