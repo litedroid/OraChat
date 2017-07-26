@@ -3,4 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- Ora colors -->
+    <color name="ora_orange">#F5A523</color>
+    <color name="ora_black">#020202</color>
+    <color name="ora_light_grey">#8E8E94</color>
+
 </resources>
