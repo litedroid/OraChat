@@ -13,9 +13,9 @@ public class LoginResult
     }
 
     @Expose
-    private UserData data;
+    private User data;
 
-    public UserData getData()
+    public User getData()
     {
         return data;
     }

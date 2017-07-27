@@ -13,9 +13,9 @@ public class CreateUserResult
     }
 
     @Expose
-    private UserData data;
+    private User data;
 
-    public UserData getData()
+    public User getData()
     {
         return data;
     }

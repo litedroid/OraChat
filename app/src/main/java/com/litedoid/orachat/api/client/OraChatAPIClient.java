@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.litedoid.orachat.Constants;
 import com.litedoid.orachat.api.APICallback;
 import com.litedoid.orachat.api.APIErrorType;
+import com.litedoid.orachat.api.model.ChatListResult;
 import com.litedoid.orachat.api.model.CreateUserResult;
 import com.litedoid.orachat.api.model.LoginResult;
 
@@ -29,6 +30,9 @@ public class OraChatAPIClient
     public static final String KEY_EMAIL = "email";
     public static final String KEY_PASSWORD = "password";
     public static final String KEY_PASSWORD_CONFIRMATION = "password_confirmation";
+
+    public static final String KEY_PAGE = "page";
+    public static final String KEY_LIMIT = "limit";
 
     private static RestAdapter restAdapter;
     private OraChatAPIInterface apiService;
@@ -113,6 +117,47 @@ public class OraChatAPIClient
             public void failure(RetrofitError error)
             {
                 logRetrofitError("login", error);
+
+                if (error.getResponse() == null)
+                {
+                    callback.onError(APIErrorType.UNKNOWN);
+                }
+                else if (error.getKind().equals(RetrofitError.Kind.NETWORK))
+                {
+                    callback.onError(APIErrorType.NETWORK);
+                }
+                else
+                {
+                    switch (error.getResponse().getStatus())
+                    {
+                        case HttpURLConnection.HTTP_NOT_FOUND:
+                            callback.onError(APIErrorType.UNKNOWN);
+                            break;
+                        default:
+                            callback.onError(APIErrorType.UNKNOWN);
+                            break;
+                    }
+                }
+            }
+        });
+    }
+
+    public void getChatList(int page, int limit, final APICallback callback)
+    {
+        apiService.getChatList(page, limit, new Callback<ChatListResult>()
+        {
+            @Override
+            public void success(ChatListResult result, Response response)
+            {
+                Log.d(TAG, "getChatList success: " + new Gson().toJson(result));
+
+                callback.onSuccess(result);
+            }
+
+            @Override
+            public void failure(RetrofitError error)
+            {
+                logRetrofitError("getChatList", error);
 
                 if (error.getResponse() == null)
                 {

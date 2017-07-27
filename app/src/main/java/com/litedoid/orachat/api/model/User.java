@@ -2,7 +2,7 @@ package com.litedoid.orachat.api.model;
 
 import com.google.gson.annotations.Expose;
 
-public class UserData
+public class User
 {
     @Expose
     private int id;
@@ -12,7 +12,6 @@ public class UserData
 
     @Expose
     private String email;
-
 
     public int getId()
     {
