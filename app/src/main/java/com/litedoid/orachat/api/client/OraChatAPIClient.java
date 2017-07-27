@@ -7,8 +7,11 @@ import com.litedoid.orachat.Constants;
 import com.litedoid.orachat.api.APICallback;
 import com.litedoid.orachat.api.APIErrorType;
 import com.litedoid.orachat.api.CreateUserResult;
+import com.litedoid.orachat.api.LoginResult;
 
 import java.net.HttpURLConnection;
+import java.util.HashMap;
+import java.util.Map;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -43,7 +46,14 @@ public class OraChatAPIClient
 
     public void createUser(String name, String email, String password, String passwordConfirmation, final APICallback callback)
     {
-        apiService.createUser(name, email, password, passwordConfirmation, new Callback<CreateUserResult>()
+        Map<String, String> map = new HashMap<>();
+
+        map.put(KEY_NAME, name);
+        map.put(KEY_EMAIL, email);
+        map.put(KEY_PASSWORD, password);
+        map.put(KEY_PASSWORD_CONFIRMATION, passwordConfirmation);
+
+        apiService.createUser(map, new Callback<CreateUserResult>()
         {
             @Override
             public void success(CreateUserResult result, Response response)
@@ -57,6 +67,52 @@ public class OraChatAPIClient
             public void failure(RetrofitError error)
             {
                 logRetrofitError("createUser", error);
+
+                if (error.getResponse() == null)
+                {
+                    callback.onError(APIErrorType.UNKNOWN);
+                }
+                else if (error.getKind().equals(RetrofitError.Kind.NETWORK))
+                {
+                    callback.onError(APIErrorType.NETWORK);
+                }
+                else
+                {
+                    switch (error.getResponse().getStatus())
+                    {
+                        case HttpURLConnection.HTTP_NOT_FOUND:
+                            callback.onError(APIErrorType.UNKNOWN);
+                            break;
+                        default:
+                            callback.onError(APIErrorType.UNKNOWN);
+                            break;
+                    }
+                }
+            }
+        });
+    }
+
+    public void login(String email, String password, final APICallback callback)
+    {
+        Map<String, String> map = new HashMap<>();
+
+        map.put(KEY_EMAIL, email);
+        map.put(KEY_PASSWORD, password);
+
+        apiService.login(map, new Callback<LoginResult>()
+        {
+            @Override
+            public void success(LoginResult result, Response response)
+            {
+                Log.d(TAG, "login success: " + new Gson().toJson(result));
+
+                callback.onSuccess(result);
+            }
+
+            @Override
+            public void failure(RetrofitError error)
+            {
+                logRetrofitError("login", error);
 
                 if (error.getResponse() == null)
                 {

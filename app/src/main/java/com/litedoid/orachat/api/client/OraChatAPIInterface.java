@@ -1,21 +1,24 @@
 package com.litedoid.orachat.api.client;
 
 import com.litedoid.orachat.api.CreateUserResult;
+import com.litedoid.orachat.api.LoginResult;
+
+import java.util.Map;
 
 import retrofit.Callback;
-import retrofit.http.Field;
+import retrofit.http.Body;
 import retrofit.http.POST;
 
 public interface OraChatAPIInterface
 {
     String ENDPOINT_USERS = "/users";
+    String ENDPOINT_LOGIN = "/auth/login";
+
 
     @POST(ENDPOINT_USERS)
-    void createUser(@Field(OraChatAPIClient.KEY_NAME) String name,
-                    @Field(OraChatAPIClient.KEY_EMAIL) String email,
-                    @Field(OraChatAPIClient.KEY_PASSWORD) String password,
-                    @Field(OraChatAPIClient.KEY_PASSWORD_CONFIRMATION) String passwordConfirmation,
-                    Callback<CreateUserResult> callback);
+    void createUser(@Body Map<String, String> map, Callback<CreateUserResult> callback);
 
+    @POST(ENDPOINT_LOGIN)
+    void login(@Body Map<String, String> map, Callback<LoginResult> callback);
 
 }

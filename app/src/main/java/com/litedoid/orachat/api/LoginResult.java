@@ -2,7 +2,7 @@ package com.litedoid.orachat.api;
 
 import com.google.gson.annotations.Expose;
 
-public class CreateUserResult
+public class LoginResult
 {
     @Expose
     private Meta meta;
@@ -19,5 +19,4 @@ public class CreateUserResult
     {
         return data;
     }
-
 }

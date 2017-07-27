@@ -8,7 +8,9 @@ import android.widget.TextView;
 
 import com.litedoid.orachat.R;
 import com.litedoid.orachat.fragment.LoginFragment;
-import com.litedoid.orachat.fragment.LoginFragment_;
+import com.litedoid.orachat.fragment.RegisterFragment;
+import com.litedoid.orachat.interfaces.LoginListener;
+import com.litedoid.orachat.interfaces.RegisterListener;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -28,7 +30,12 @@ public class LoginOrRegisterActivity extends AppCompatActivity
     @ViewById(R.id.right_menu_choice)
     TextView righttMenuChoice;
 
-    LoginFragment_ loginFragment;
+    LoginFragment loginFragment;
+    LoginListener loginListener;
+
+    RegisterFragment registerFragment;
+    RegisterListener registerListener;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -37,6 +44,11 @@ public class LoginOrRegisterActivity extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
 
+        loginFragment = LoginFragment.newInstance();
+        loginListener = loginFragment;
+
+        registerFragment = RegisterFragment.newInstance();
+        registerListener = registerFragment;
     }
 
     @AfterViews
@@ -61,6 +73,14 @@ public class LoginOrRegisterActivity extends AppCompatActivity
     {
         Log.d(TAG, "onRightMenuClick showLoginView: " + showLoginView);
 
+        if (showLoginView)
+        {
+            performLogin();
+        }
+        else
+        {
+            performRegister();
+        }
     }
 
     private void setMenuOptions()
@@ -80,6 +100,8 @@ public class LoginOrRegisterActivity extends AppCompatActivity
     private void changeView()
     {
         showLoginView = !showLoginView;
+        setMenuOptions();
+        showCurrentView();
     }
 
     private void showCurrentView()
@@ -87,14 +109,25 @@ public class LoginOrRegisterActivity extends AppCompatActivity
 
         if (showLoginView)
         {
-            LoginFragment fragment = (LoginFragment) getSupportFragmentManager().findFragmentById(R.id.main_content_layout);
-            if (fragment == null)
-            {
-                fragment = LoginFragment_.newInstance();
-                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.main_content_layout, fragment);
-                fragmentTransaction.commit();
-            }
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.main_content_layout, loginFragment);
+            fragmentTransaction.commit();
         }
+        else
+        {
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.main_content_layout, registerFragment);
+            fragmentTransaction.commit();
+        }
+    }
+
+    private void performRegister()
+    {
+        registerListener.onRegister();
+    }
+
+    private void performLogin()
+    {
+        loginListener.onLogin();
     }
 }
