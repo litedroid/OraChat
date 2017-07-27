@@ -1,7 +1,7 @@
 package com.litedoid.orachat.api.client;
 
-import com.litedoid.orachat.api.CreateUserResult;
-import com.litedoid.orachat.api.LoginResult;
+import com.litedoid.orachat.api.model.CreateUserResult;
+import com.litedoid.orachat.api.model.LoginResult;
 
 import java.util.Map;
 

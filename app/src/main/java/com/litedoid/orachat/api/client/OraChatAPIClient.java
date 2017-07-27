@@ -6,8 +6,8 @@ import com.google.gson.Gson;
 import com.litedoid.orachat.Constants;
 import com.litedoid.orachat.api.APICallback;
 import com.litedoid.orachat.api.APIErrorType;
-import com.litedoid.orachat.api.CreateUserResult;
-import com.litedoid.orachat.api.LoginResult;
+import com.litedoid.orachat.api.model.CreateUserResult;
+import com.litedoid.orachat.api.model.LoginResult;
 
 import java.net.HttpURLConnection;
 import java.util.HashMap;

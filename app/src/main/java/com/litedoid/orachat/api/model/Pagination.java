@@ -1,4 +1,4 @@
-package com.litedoid.orachat.api;
+package com.litedoid.orachat.api.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
