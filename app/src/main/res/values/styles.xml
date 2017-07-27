@@ -3,15 +3,25 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
 
-        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
-        <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
-        <!--<item name="colorAccent">@color/colorAccent</item>-->
+        <!--<item name="colorPrimary">@color/ora_black</item>-->
+        <!--<item name="colorPrimaryDark">@color/ora_black</item>-->
+        <!--<item name="colorAccent">@color/ora_orange</item>-->
     </style>
 
 
     <style name="orange_menu_text" parent="@android:style/Widget.TextView">
         <item name="android:textColor">@color/ora_orange</item>
         <item name="android:textSize">@dimen/text_size_large</item>
+    </style>
+
+    <style name="orange_tab_text" parent="@android:style/Widget.Button">
+        <item name="android:textColor">@color/ora_orange</item>
+        <item name="android:textSize">@dimen/text_size_normal</item>
+    </style>
+
+    <style name="grey_tab_text" parent="@android:style/Widget.Button">
+        <item name="android:textColor">@color/ora_dark_grey</item>
+        <item name="android:textSize">@dimen/text_size_normal</item>
     </style>
 
     <style name="black_bold_menu_text" parent="@android:style/Widget.TextView">
