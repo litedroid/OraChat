@@ -72,7 +72,6 @@ public class LoginFragment extends Fragment implements LoginListener
     {
         Log.d(TAG, "onLogin");
 
-        Log.d(TAG, "onRegister");
         String email = emailEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
 

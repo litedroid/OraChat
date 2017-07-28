@@ -6,9 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.litedoid.orachat.ApplicationSettings;
 import com.litedoid.orachat.R;
 import com.litedoid.orachat.fragment.LoginFragment;
+import com.litedoid.orachat.fragment.LoginFragment_;
 import com.litedoid.orachat.fragment.RegisterFragment;
+import com.litedoid.orachat.fragment.RegisterFragment_;
 import com.litedoid.orachat.interfaces.LoginListener;
 import com.litedoid.orachat.interfaces.RegisterListener;
 
@@ -44,10 +47,10 @@ public class LoginOrRegisterActivity extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
 
-        loginFragment = LoginFragment.newInstance();
+        loginFragment = LoginFragment_.newInstance();
         loginListener = loginFragment;
 
-        registerFragment = RegisterFragment.newInstance();
+        registerFragment = RegisterFragment_.newInstance();
         registerListener = registerFragment;
     }
 
@@ -124,10 +127,18 @@ public class LoginOrRegisterActivity extends AppCompatActivity
     private void performRegister()
     {
         registerListener.onRegister();
+
+        //temp - send to login
+        changeView();
     }
 
     private void performLogin()
     {
         loginListener.onLogin();
+
+        ApplicationSettings.sharedSettings().setLoggedIn();
+
+        MainActivity_.intent(LoginOrRegisterActivity.this).start();
+        finish();
     }
 }
