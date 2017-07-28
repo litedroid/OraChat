@@ -7,5 +7,6 @@ public class Constants
     public final static String FILE_APPSETTINGS = "appSettings";
     public final static String SETTINGS_LOGGED_IN = "logged_in";
 
+    public final static int PAGE_LIMIT = 50;
 
 }

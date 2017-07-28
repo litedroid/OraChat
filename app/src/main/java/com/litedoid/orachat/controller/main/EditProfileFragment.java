@@ -1,4 +1,4 @@
-package com.litedoid.orachat.fragment;
+package com.litedoid.orachat.controller.main;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,14 +10,14 @@ import com.litedoid.orachat.R;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
 
-@EFragment(R.layout.fragment_chatlist)
-public class ChatListFragment extends Fragment
+@EFragment(R.layout.fragment_register)
+public class EditProfileFragment extends Fragment
 {
-    private static final String TAG = ChatListFragment.class.getSimpleName();
+    private static final String TAG = EditProfileFragment.class.getSimpleName();
 
-    public static ChatListFragment newInstance()
+    public static EditProfileFragment newInstance()
     {
-        return new ChatListFragment_();
+        return new EditProfileFragment_();
     }
 
     @Override

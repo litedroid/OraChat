@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.litedoid.orachat.ApplicationSettings;
 import com.litedoid.orachat.R;
+import com.litedoid.orachat.controller.main.MainActivity_;
 import com.litedoid.orachat.fragment.LoginFragment;
 import com.litedoid.orachat.fragment.LoginFragment_;
 import com.litedoid.orachat.fragment.RegisterFragment;

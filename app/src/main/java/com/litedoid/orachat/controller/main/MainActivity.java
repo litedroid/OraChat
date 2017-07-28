@@ -1,4 +1,4 @@
-package com.litedoid.orachat.activity;
+package com.litedoid.orachat.controller.main;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -9,19 +9,14 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.litedoid.orachat.R;
-import com.litedoid.orachat.fragment.ChatDetailsFragment;
-import com.litedoid.orachat.fragment.ChatDetailsFragment_;
-import com.litedoid.orachat.fragment.ChatListFragment;
-import com.litedoid.orachat.fragment.ChatListFragment_;
-import com.litedoid.orachat.fragment.EditProfileFragment;
-import com.litedoid.orachat.fragment.EditProfileFragment_;
+import com.litedoid.orachat.interfaces.MainNavigationListener;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
 @EActivity(R.layout.activity_main)
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity implements MainNavigationListener
 {
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -33,6 +28,8 @@ public class MainActivity extends AppCompatActivity
     ChatListFragment chatListFragment;
     ChatDetailsFragment chatDetailsFragment;
     EditProfileFragment editProfileFragment;
+
+    ChatListPresenter chatListPresenter;
 
     @ViewById(R.id.account_bottom_menu_choice)
     Button accountButton;
@@ -56,9 +53,7 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
 
-        chatListFragment = ChatListFragment_.newInstance();
-        chatDetailsFragment = ChatDetailsFragment_.newInstance();
-        editProfileFragment = EditProfileFragment_.newInstance();
+        createFragments();
     }
 
     @AfterViews
@@ -68,6 +63,21 @@ public class MainActivity extends AppCompatActivity
 
         setMenuOptions();
         showCurrentView();
+        loadData();
+    }
+
+    private void createFragments()
+    {
+        initChatListFragment();
+        chatDetailsFragment = ChatDetailsFragment_.newInstance();
+        editProfileFragment = EditProfileFragment_.newInstance();
+    }
+
+    private void initChatListFragment()
+    {
+        chatListFragment = ChatListFragment_.newInstance();
+        chatListPresenter = new ChatListPresenter(chatListFragment);
+        chatListFragment.setPresenter(chatListPresenter);
     }
 
     private void setMenuOptions()
@@ -112,5 +122,40 @@ public class MainActivity extends AppCompatActivity
         fragmentTransaction.commit();
     }
 
+    private void loadData()
+    {
+        if (currentView == MainScreenView.CHAT_DETAILS)
+        {
+        }
+        else if (currentView == MainScreenView.EDIT_PROFILE)
+        {
+        }
+        else
+        {
+            chatListPresenter.loadChatContent();
+        }
+    }
+
+    @Override
+    public void onShowChatDetails(int chatId)
+    {
+        currentView = MainScreenView.CHAT_DETAILS;
+        showCurrentView();
+    }
+
+    @Override
+    public void onShowChatList()
+    {
+        currentView = MainScreenView.CHAT_LIST;
+        showCurrentView();
+        loadData();
+    }
+
+    @Override
+    public void onShowProfile()
+    {
+        currentView = MainScreenView.EDIT_PROFILE;
+        showCurrentView();
+    }
 
 }

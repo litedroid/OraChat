@@ -8,7 +8,7 @@ public class ChatListResult
 {
 
     @Expose
-    private Data data;
+    private List<Chat> data;
 
     @Expose
     private Meta meta;
@@ -18,12 +18,12 @@ public class ChatListResult
         return meta;
     }
 
-    public Data getData()
+    public List<Chat> getChats()
     {
         return data;
     }
 
-    public class Data
+    public class Chat
     {
         @Expose
         private int id;

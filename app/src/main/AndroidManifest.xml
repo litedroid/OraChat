@@ -2,19 +2,19 @@
 <manifest package="com.litedoid.orachat"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
+        android:name=".OraChatApplication_"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name=".OraChatApplication_"
         android:theme="@style/AppTheme">
 
         <activity android:name=".activity.SplashActivity_"
-        android:screenOrientation="portrait">
+                  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -22,14 +22,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.MainActivity_"
-                  android:screenOrientation="portrait" />
+        <activity android:name=".controller.main.MainActivity_"
+                  android:screenOrientation="portrait"/>
 
         <activity android:name=".activity.LoginOrRegisterActivity_"
-                  android:screenOrientation="portrait" />
+                  android:screenOrientation="portrait"/>
 
-        <activity android:name=".activity.RegisterActivity_"
-                  android:screenOrientation="portrait" />
     </application>
 
 </manifest>

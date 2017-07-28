@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.litedoid.orachat.ApplicationSettings;
 import com.litedoid.orachat.R;
+import com.litedoid.orachat.controller.main.MainActivity_;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;

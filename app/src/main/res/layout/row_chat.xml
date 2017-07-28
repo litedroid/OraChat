@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/chat_row_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/chat_top_date_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/ora_grey_header"
+        android:paddingBottom="@dimen/margin_small"
+        android:paddingLeft="@dimen/margin_large"
+        android:paddingTop="@dimen/margin_small"
+        android:textColor="@color/ora_black"
+        tools:text="[TODAY]"/>
+
+    <TextView
+        android:id="@+id/chat_name_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_extra_large"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:textColor="@color/ora_black"
+        tools:text="[NAME]"/>
+
+    <TextView
+        android:id="@+id/chat_creator_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_extra_large"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:textColor="@color/ora_orange"
+        tools:text="[CREATOR]"/>
+
+    <TextView
+        android:id="@+id/chat_last_message_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_extra_large"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:textColor="@color/ora_grey_text"
+        tools:text="[LAST MESSAGE]"/>
+
+
+</LinearLayout>
