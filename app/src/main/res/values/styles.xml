@@ -49,4 +49,14 @@
         <item name="android:textSize">@dimen/text_size_medium</item>
     </style>
 
+    <style name="black_chat_message_text" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/ora_black</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+    </style>
+
+    <style name="orange_chat_message_text" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/ora_orange</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+    </style>
+
 </resources>
