@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements MainNavigationLis
     EditProfileFragment editProfileFragment;
 
     ChatListPresenter chatListPresenter;
+    ChatDetailsPresenter chatDetailsPresenter;
 
     @ViewById(R.id.account_bottom_menu_choice)
     Button accountButton;
@@ -63,13 +64,12 @@ public class MainActivity extends AppCompatActivity implements MainNavigationLis
 
         setMenuOptions();
         showCurrentView();
-        loadData();
     }
 
     private void createFragments()
     {
         initChatListFragment();
-        chatDetailsFragment = ChatDetailsFragment_.newInstance();
+        initChatDetailsFragment();
         editProfileFragment = EditProfileFragment_.newInstance();
     }
 
@@ -77,7 +77,15 @@ public class MainActivity extends AppCompatActivity implements MainNavigationLis
     {
         chatListFragment = ChatListFragment_.newInstance();
         chatListPresenter = new ChatListPresenter(chatListFragment);
+        chatListFragment.setMainNavigationListener(this);
         chatListFragment.setPresenter(chatListPresenter);
+    }
+
+    private void initChatDetailsFragment()
+    {
+        chatDetailsFragment = ChatDetailsFragment_.newInstance();
+        chatDetailsPresenter = new ChatDetailsPresenter(chatDetailsFragment);
+        chatDetailsFragment.setPresenter(chatDetailsPresenter);
     }
 
     private void setMenuOptions()
@@ -122,25 +130,15 @@ public class MainActivity extends AppCompatActivity implements MainNavigationLis
         fragmentTransaction.commit();
     }
 
-    private void loadData()
-    {
-        if (currentView == MainScreenView.CHAT_DETAILS)
-        {
-        }
-        else if (currentView == MainScreenView.EDIT_PROFILE)
-        {
-        }
-        else
-        {
-            chatListPresenter.loadChatContent();
-        }
-    }
-
     @Override
-    public void onShowChatDetails(int chatId)
+    public void onLoadChatDetails(int chatId)
     {
+        Log.d(TAG, "onLoadChatDetails: " + chatId);
+
         currentView = MainScreenView.CHAT_DETAILS;
         showCurrentView();
+
+        chatDetailsPresenter.loadChatDetails(chatId);
     }
 
     @Override
@@ -148,7 +146,6 @@ public class MainActivity extends AppCompatActivity implements MainNavigationLis
     {
         currentView = MainScreenView.CHAT_LIST;
         showCurrentView();
-        loadData();
     }
 
     @Override

@@ -1,7 +1,6 @@
 package com.litedoid.orachat.controller.main;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +10,7 @@ import com.litedoid.orachat.R;
 import com.litedoid.orachat.adapter.ChatsAdapter;
 import com.litedoid.orachat.api.model.ChatListResult;
 import com.litedoid.orachat.interfaces.ChatListListener;
+import com.litedoid.orachat.interfaces.MainNavigationListener;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
@@ -20,7 +20,6 @@ import org.androidannotations.annotations.ViewById;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.google.gson.internal.$Gson$Preconditions.checkNotNull;
 
 @EFragment(R.layout.fragment_chatlist)
 public class ChatListFragment extends Fragment implements ChatListContract.View, ChatListListener
@@ -28,6 +27,8 @@ public class ChatListFragment extends Fragment implements ChatListContract.View,
     private static final String TAG = ChatListFragment.class.getSimpleName();
 
     private ChatListContract.Presenter presenter;
+
+    private MainNavigationListener mainNavigationListener;
 
     @ViewById(R.id.chat_recycler_view)
     protected RecyclerView chatRecyclerView;
@@ -42,7 +43,7 @@ public class ChatListFragment extends Fragment implements ChatListContract.View,
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState)
+    public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
     }
@@ -60,6 +61,8 @@ public class ChatListFragment extends Fragment implements ChatListContract.View,
 
         chatsAdapter = new ChatsAdapter(getContext(), chats, this);
         chatRecyclerView.setAdapter(chatsAdapter);
+
+        presenter.loadChatContent();
     }
 
     @Override
@@ -81,7 +84,7 @@ public class ChatListFragment extends Fragment implements ChatListContract.View,
     public void setPresenter(ChatListContract.Presenter presenter)
     {
         Log.d(TAG, "setPresenter");
-        this.presenter = checkNotNull(presenter);
+        this.presenter = presenter;
     }
 
     @UiThread
@@ -95,9 +98,16 @@ public class ChatListFragment extends Fragment implements ChatListContract.View,
     }
 
     @Override
+    public void setMainNavigationListener(MainNavigationListener mainNavigationListener)
+    {
+        this.mainNavigationListener = mainNavigationListener;
+    }
+
+    @Override
     public void onSelectChat(int chatId)
     {
         Log.d(TAG, "onSelectChat: " + chatId);
 
+        mainNavigationListener.onLoadChatDetails(chatId);
     }
 }

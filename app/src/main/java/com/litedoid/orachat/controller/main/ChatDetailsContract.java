@@ -1,15 +1,17 @@
 package com.litedoid.orachat.controller.main;
 
 
-import com.litedoid.orachat.api.model.ChatListResult;
+import com.litedoid.orachat.api.model.ChatMessage;
 import com.litedoid.orachat.controller.BasePresenter;
 import com.litedoid.orachat.controller.BaseView;
+
+import java.util.List;
 
 public interface ChatDetailsContract
 {
     interface View extends BaseView<Presenter>
     {
-        void showChatDetails(ChatListResult.Chat chat);
+        void showChatDetails(List<ChatMessage> chatMessages);
 
         void addChatMessage();
     }
