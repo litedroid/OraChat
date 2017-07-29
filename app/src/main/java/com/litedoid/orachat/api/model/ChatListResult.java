@@ -1,6 +1,7 @@
 package com.litedoid.orachat.api.model;
 
 import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
@@ -34,6 +35,7 @@ public class ChatListResult
         @Expose
         private List<User> users;
 
+        @SerializedName("last_chat_message")
         @Expose
         private ChatMessage lastChatMessage;
 

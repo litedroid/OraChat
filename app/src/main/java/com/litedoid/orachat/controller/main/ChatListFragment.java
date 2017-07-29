@@ -58,7 +58,7 @@ public class ChatListFragment extends Fragment implements ChatListContract.View,
         chatRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         chatRecyclerView.setItemAnimator(null);
 
-        chatsAdapter = new ChatsAdapter(chats, this);
+        chatsAdapter = new ChatsAdapter(getContext(), chats, this);
         chatRecyclerView.setAdapter(chatsAdapter);
     }
 

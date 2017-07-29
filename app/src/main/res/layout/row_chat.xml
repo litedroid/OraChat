@@ -9,22 +9,22 @@
 
     <TextView
         android:id="@+id/chat_top_date_textview"
+        style="@style/black_chat_list_header_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/ora_grey_header"
         android:paddingBottom="@dimen/margin_small"
         android:paddingLeft="@dimen/margin_large"
         android:paddingTop="@dimen/margin_small"
-        android:textColor="@color/ora_black"
         tools:text="[TODAY]"/>
 
     <TextView
         android:id="@+id/chat_name_textview"
+        style="@style/black_chat_list_header_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_extra_large"
-        android:layout_marginTop="@dimen/margin_medium"
-        android:textColor="@color/ora_black"
+        android:layout_marginTop="@dimen/margin_extra_small"
         tools:text="[NAME]"/>
 
     <TextView
@@ -32,8 +32,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_extra_large"
-        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_extra_small"
         android:textColor="@color/ora_orange"
+        android:textSize="@dimen/text_size_medium"
         tools:text="[CREATOR]"/>
 
     <TextView
@@ -41,9 +42,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_extra_large"
-        android:layout_marginTop="@dimen/margin_medium"
-        android:textColor="@color/ora_grey_text"
+        android:layout_marginTop="@dimen/margin_extra_small"
+        android:textColor="@color/ora_dark_grey"
+        android:textSize="@dimen/text_size_medium"
         tools:text="[LAST MESSAGE]"/>
 
+    <View
+        android:id="@+id/chat_bottom_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/margin_extra_large"
+        android:layout_marginTop="@dimen/margin_large"
+        android:background="@color/ora_dark_grey"/>
 
 </LinearLayout>

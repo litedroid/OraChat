@@ -9,4 +9,8 @@ public class Constants
 
     public final static int PAGE_LIMIT = 50;
 
+
+    public static String DATE_SERVER_FORMAT = "yyyy-MM-dd'T'HH:mm:ssZ";
+    public static String DATE_SHORT_FORMAT = "MMMM d";
+
 }

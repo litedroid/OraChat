@@ -1,13 +1,16 @@
 package com.litedoid.orachat.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.gson.Gson;
 import com.litedoid.orachat.R;
 import com.litedoid.orachat.api.model.ChatListResult;
+import com.litedoid.orachat.helpers.ChatHelper;
 import com.litedoid.orachat.interfaces.ChatListListener;
 
 import java.util.List;
@@ -16,12 +19,15 @@ public class ChatsAdapter extends RecyclerView.Adapter<ChatViewHolder>
 {
     private static final String TAG = ChatsAdapter.class.getSimpleName();
 
-    public List<ChatListResult.Chat> chats;
+    private Context context;
+
+    private List<ChatListResult.Chat> chats;
 
     private ChatListListener chatListListener;
 
-    public ChatsAdapter(List<ChatListResult.Chat> chats, ChatListListener chatListListener)
+    public ChatsAdapter(Context context, List<ChatListResult.Chat> chats, ChatListListener chatListListener)
     {
+        this.context = context;
         this.chats = chats;
         this.chatListListener = chatListListener;
     }
@@ -43,10 +49,13 @@ public class ChatsAdapter extends RecyclerView.Adapter<ChatViewHolder>
 
         final ChatListResult.Chat chat = chats.get(position);
 
-//        holder.topDateTextView.setText(chat.getLastChatMessage().getCreatedAt());
-        holder.chatNameTextView.setText(chat.getName());
-//        holder.creatorTextView.setText(chat.getLastChatMessage().getUser().getName());
-//        holder.lastMessageTextView.setText(chat.getLastChatMessage().getMessage());
+
+        Log.d(TAG, "onBindViewHolder chat: " + new Gson().toJson(chat));
+
+        holder.topDateTextView.setText(ChatHelper.getChatDate(context, chat));
+        holder.chatNameTextView.setText(String.format(context.getString(R.string.chat_row_name), chat.getName(), ChatHelper.getChatUserNames(chat.getUsers())));
+        holder.creatorTextView.setText(chat.getLastChatMessage().getUser().getName());
+        holder.lastMessageTextView.setText(chat.getLastChatMessage().getMessage());
 
         holder.chatLayout.setOnClickListener(new View.OnClickListener()
         {
@@ -56,6 +65,12 @@ public class ChatsAdapter extends RecyclerView.Adapter<ChatViewHolder>
                 chatListListener.onSelectChat(chat.getId());
             }
         });
+
+        if(position == chats.size() - 1)
+            holder.bottomLine.setVisibility(View.VISIBLE);
+        else
+            holder.bottomLine.setVisibility(View.GONE);
+
     }
 
     @Override

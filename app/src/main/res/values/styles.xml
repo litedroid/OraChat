@@ -43,4 +43,10 @@
         <item name="android:singleLine">true</item>
     </style>
 
+    <style name="black_chat_list_header_text" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/ora_black</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+    </style>
+
 </resources>

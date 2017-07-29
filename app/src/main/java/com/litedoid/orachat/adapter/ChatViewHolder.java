@@ -7,7 +7,6 @@ import android.widget.TextView;
 
 import com.litedoid.orachat.R;
 
-
 public class ChatViewHolder extends RecyclerView.ViewHolder
 {
     public LinearLayout chatLayout;
@@ -15,6 +14,7 @@ public class ChatViewHolder extends RecyclerView.ViewHolder
     public TextView chatNameTextView;
     public TextView creatorTextView;
     public TextView lastMessageTextView;
+    public View bottomLine;
 
     public ChatViewHolder(View v)
     {
@@ -25,6 +25,7 @@ public class ChatViewHolder extends RecyclerView.ViewHolder
         this.chatNameTextView = (TextView) v.findViewById(R.id.chat_name_textview);
         this.creatorTextView = (TextView) v.findViewById(R.id.chat_creator_textview);
         this.lastMessageTextView = (TextView) v.findViewById(R.id.chat_last_message_textview);
+        this.bottomLine = v.findViewById(R.id.chat_bottom_line);
 
     }
 }
