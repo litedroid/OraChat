@@ -54,7 +54,10 @@ public class ChatsAdapter extends RecyclerView.Adapter<ChatViewHolder>
 
         holder.topDateTextView.setText(ChatHelper.getChatDate(context, chat));
         holder.chatNameTextView.setText(String.format(context.getString(R.string.chat_row_name), chat.getName(), ChatHelper.getChatUserNames(chat.getUsers())));
-        holder.creatorTextView.setText(chat.getLastChatMessage().getUser().getName());
+
+        holder.creatorTextView.setText(String.format(ChatHelper.getFirstName(chat.getLastChatMessage().getUser()) + " - " +
+                ChatHelper.getTimeSince(context, chat.getLastChatMessage().getCreatedAt())));
+
         holder.lastMessageTextView.setText(chat.getLastChatMessage().getMessage());
 
         holder.chatLayout.setOnClickListener(new View.OnClickListener()

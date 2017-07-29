@@ -8,8 +8,12 @@ import com.litedoid.orachat.api.model.ChatListResult;
 import com.litedoid.orachat.api.model.User;
 
 import org.joda.time.DateTime;
+import org.joda.time.Days;
+import org.joda.time.Months;
 
 import java.util.List;
+
+import static org.joda.time.Minutes.minutesBetween;
 
 public class ChatHelper
 {
@@ -52,11 +56,27 @@ public class ChatHelper
 
         DateTime chatDate = DateHelper.serverValueToDate(chat.getLastChatMessage().getCreatedAt());
 
-        if(!DateHelper.isSameDate(chatDate, DateTime.now()))
+        if (!DateHelper.isSameDate(chatDate, DateTime.now()))
         {
             chatDateString = DateHelper.getShortDate(chatDate);
         }
 
         return chatDateString;
+    }
+
+    public static String getTimeSince(Context context, String createDate)
+    {
+        DateTime messageDate = DateHelper.serverValueToDate(createDate);
+
+        DateTime now = DateTime.now();
+
+        if (minutesBetween(messageDate, now).getMinutes() < 60)
+            return "" + minutesBetween(messageDate, now).getMinutes() + " " + context.getString(R.string.mins_ago);
+        else if (Days.daysBetween(messageDate, now).getDays() < 1)
+            return "" + Days.daysBetween(messageDate, now).getDays() + " " + context.getString(R.string.hours_ago);
+        else if (Months.monthsBetween(messageDate, now).getMonths() < 1)
+            return "" + Days.daysBetween(messageDate, now).getDays() + " " + context.getString(R.string.days_ago);
+        else
+            return "" + Months.monthsBetween(messageDate, now).getMonths() + " " + context.getString(R.string.months_ago);
     }
 }

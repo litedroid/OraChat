@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import com.google.gson.Gson;
 import com.litedoid.orachat.R;
 import com.litedoid.orachat.api.model.ChatMessage;
+import com.litedoid.orachat.helpers.ChatHelper;
 
 import java.util.List;
 
@@ -49,14 +50,13 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessageViewHolder>
         return new MessageViewHolder(view);
     }
 
-
     @Override
     public int getItemViewType(int position)
     {
-        int viewType = TYPE_LEFT;
+        int viewType = TYPE_RIGHT;
 
         if (position % 2 == 0)
-            viewType = TYPE_RIGHT;
+            viewType = TYPE_LEFT;
 
         return viewType;
     }
@@ -68,11 +68,12 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessageViewHolder>
 
         final ChatMessage message = chatMessages.get(position);
 
-
         Log.d(TAG, "onBindViewHolder message: " + new Gson().toJson(message));
 
         holder.messageTextView.setText(message.getMessage());
-        holder.authorTextView.setText(message.getCreatedAt());
+
+        holder.authorTextView.setText(String.format(ChatHelper.getFirstName(message.getUser()) + " - " +
+                ChatHelper.getTimeSince(context, message.getCreatedAt())));
 
     }
 

@@ -20,7 +20,13 @@
 
 
     <string name="chat_row_name">%1$s by %2$s</string>
+    <string name="time_since_format">%1$s - %2$s ago</string>
 
     <string name="today">Today</string>
+
+    <string name="mins_ago">mins</string>
+    <string name="hours_ago">hours</string>
+    <string name="days_ago">days</string>
+    <string name="months_ago">months</string>
 
 </resources>
