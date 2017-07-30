@@ -43,5 +43,10 @@
     <string name="update_user_error_title">Error</string>
     <string name="update_user_error_message">There was an error updating your profile.</string>
 
+    <string name="register_error_title">Error</string>
+    <string name="register_error_message">There was an error updating your profile.</string>
+
+    <string name="login_error_title">Error</string>
+    <string name="login_error_message">There was an error with your credentials. Please confirm them and try again.</string>
 
 </resources>

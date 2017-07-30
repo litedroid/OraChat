@@ -7,10 +7,7 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.litedoid.orachat.R;
-import com.litedoid.orachat.fragment.RegisterFragment;
-import com.litedoid.orachat.fragment.RegisterFragment_;
 import com.litedoid.orachat.interfaces.AuthNavigationListener;
-import com.litedoid.orachat.interfaces.RegisterListener;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -34,8 +31,7 @@ public class AuthActivity extends AppCompatActivity implements AuthNavigationLis
     LoginPresenter loginPresenter;
 
     RegisterFragment registerFragment;
-    RegisterListener registerListener;
-
+    RegisterPresenter registerPresenter;
 
 
     @Override
@@ -60,11 +56,8 @@ public class AuthActivity extends AppCompatActivity implements AuthNavigationLis
     private void createFragments()
     {
         initLoginFragment();
+        initRegisterFragment();
 
-//        loginListener = loginFragment;
-
-        registerFragment = RegisterFragment_.newInstance();
-        registerListener = registerFragment;
     }
 
     private void initLoginFragment()
@@ -73,6 +66,14 @@ public class AuthActivity extends AppCompatActivity implements AuthNavigationLis
         loginPresenter = new LoginPresenter(loginFragment);
         loginFragment.setAuthNavigationListener(this);
         loginFragment.setPresenter(loginPresenter);
+    }
+
+    private void initRegisterFragment()
+    {
+        registerFragment = RegisterFragment_.newInstance();
+        registerPresenter = new RegisterPresenter(registerFragment);
+        registerFragment.setAuthNavigationListener(this);
+        registerFragment.setPresenter(registerPresenter);
     }
 
     @Click(R.id.left_menu_choice)
@@ -94,7 +95,7 @@ public class AuthActivity extends AppCompatActivity implements AuthNavigationLis
         }
         else
         {
-            performRegister();
+            registerPresenter.initiateRegister();
         }
     }
 
@@ -134,14 +135,6 @@ public class AuthActivity extends AppCompatActivity implements AuthNavigationLis
             fragmentTransaction.replace(R.id.main_content_layout, registerFragment);
             fragmentTransaction.commit();
         }
-    }
-
-    private void performRegister()
-    {
-        registerListener.onRegister();
-
-        //temp - send to login
-        changeView();
     }
 
     @Override

@@ -49,7 +49,7 @@ public class LoginFragment extends Fragment implements LoginContract.View
 
         if (BuildConfig.DEBUG)
         {
-            emailEditText.setText("litedroiddevelopment@gmail.com");
+            emailEditText.setText("test@test.com");
             passwordEditText.setText("password");
         }
     }
@@ -95,7 +95,8 @@ public class LoginFragment extends Fragment implements LoginContract.View
     @Override
     public void showLoginFailure()
     {
-        DialogHelper.showOKDialog(getActivity(), R.string.update_user_error_title, R.string.update_user_error_message);
+        //TODO: get error passed back from server and display
+        DialogHelper.showOKDialog(getActivity(), R.string.login_error_title, R.string.login_error_message);
     }
 
     @Override
