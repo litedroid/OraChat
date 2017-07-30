@@ -255,7 +255,7 @@ public class OraChatAPIClient
 
     public void logout(String header, final APICallback callback)
     {
-        apiService.logout(header, new Callback()
+        apiService.logout(header, new Callback<Object>()
         {
             @Override
             public void success(Object o, Response response)

@@ -42,7 +42,7 @@ public interface OraChatAPIInterface
     void login(@Body Map<String, String> map, Callback<LoginResult> callback);
 
     @POST(ENDPOINT_LOGOUT)
-    void logout(@Header(OraChatAPIClient.HEADER_AUTHORIZATION) String authHeader, Callback callback);
+    void logout(@Header(OraChatAPIClient.HEADER_AUTHORIZATION) String authHeader, Callback<Object> callback);
 
     @GET(ENDPOINT_CHATS)
     void getChatList(@Query(OraChatAPIClient.KEY_PAGE) int page, @Query(OraChatAPIClient.KEY_LIMIT) int limit, Callback<ChatListResult> callback);
