@@ -153,13 +153,15 @@ public class MainActivity extends AppCompatActivity implements MainNavigationLis
     @Click(R.id.account_bottom_menu_choice)
     protected void onClickAccountButton()
     {
-        onShowProfile();
+        currentView = MainScreenView.EDIT_PROFILE;
+        showCurrentView();
     }
 
     @Click(R.id.chatlist_bottom_menu_choice)
     protected void onClickChatList()
     {
-        onShowChatList();
+        currentView = MainScreenView.CHAT_LIST;
+        showCurrentView();
     }
 
     @Click(R.id.left_menu_choice)
@@ -193,15 +195,11 @@ public class MainActivity extends AppCompatActivity implements MainNavigationLis
     @Override
     public void onShowChatList()
     {
-        currentView = MainScreenView.CHAT_LIST;
-        showCurrentView();
     }
 
     @Override
     public void onShowProfile()
     {
-        currentView = MainScreenView.EDIT_PROFILE;
-        showCurrentView();
     }
 
     @Override

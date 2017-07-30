@@ -4,8 +4,4 @@ public interface MainNavigationListener
 {
     void onLoadChatDetails(int chatId, String title);
 
-    void onShowChatList();
-
-    void onShowProfile();
-
 }
