@@ -49,6 +49,5 @@ public class ChatDetailsPresenter implements ChatDetailsContract.Presenter
             }
         });
 
-
     }
 }

@@ -4,6 +4,10 @@
     <string name="register">Register</string>
     <string name="login">Login</string>
 
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="done">Done</string>
+
     <string name="email">Email</string>
     <string name="your_email">Your Email</string>
 
@@ -28,5 +32,16 @@
     <string name="hours_ago">hours</string>
     <string name="days_ago">days</string>
     <string name="months_ago">months</string>
+
+    <string name="logout">Logout</string>
+    <string name="logout_confirmation_title">Confirm</string>
+    <string name="logout_confirmation_message">Are you sure you want to log out?</string>
+
+    <string name="update_user_success_title">Success</string>
+    <string name="update_user_success_message">User profile updated successfully.</string>
+
+    <string name="update_user_error_title">Error</string>
+    <string name="update_user_error_message">There was an error updating your profile.</string>
+
 
 </resources>

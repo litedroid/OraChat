@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements MainNavigationLis
 
     ChatListPresenter chatListPresenter;
     ChatDetailsPresenter chatDetailsPresenter;
+    EditProfilePresenter editProfilePresenter;
 
     @ViewById(R.id.account_bottom_menu_choice)
     Button accountButton;
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements MainNavigationLis
     {
         initChatListFragment();
         initChatDetailsFragment();
-        editProfileFragment = EditProfileFragment_.newInstance();
+        initEditProfileFragment();
     }
 
     private void initChatListFragment()
@@ -88,25 +89,12 @@ public class MainActivity extends AppCompatActivity implements MainNavigationLis
         chatDetailsFragment.setPresenter(chatDetailsPresenter);
     }
 
-//    private void setMenuOptions()
-//    {
-//        if (currentView == MainScreenView.CHAT_DETAILS)
-//        {
-//            leftMenuChoice.setVisibility(View.VISIBLE);
-//            rightMenuChoice.setVisibility(View.GONE);
-//        }
-//        else if (currentView == MainScreenView.EDIT_PROFILE)
-//        {
-//            leftMenuChoice.setVisibility(View.GONE);
-//            rightMenuChoice.setVisibility(View.VISIBLE);
-//
-//        }
-//        else
-//        {
-//            leftMenuChoice.setVisibility(View.GONE);
-//            rightMenuChoice.setVisibility(View.GONE);
-//        }
-//    }
+    private void initEditProfileFragment()
+    {
+        editProfileFragment = EditProfileFragment_.newInstance();
+        editProfilePresenter = new EditProfilePresenter(editProfileFragment);
+        editProfileFragment.setPresenter(editProfilePresenter);
+    }
 
     private void showCurrentView()
     {
@@ -127,7 +115,6 @@ public class MainActivity extends AppCompatActivity implements MainNavigationLis
 
         fragmentTransaction.commit();
 
-//        setMenuOptions();
         setNavigationOptions();
     }
 
@@ -137,8 +124,6 @@ public class MainActivity extends AppCompatActivity implements MainNavigationLis
         {
             accountButton.setSelected(false);
             chatListButton.setSelected(true);
-//            accountButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.ora_orange));
-//            chatListButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.ora_dark_grey));
 
             leftMenuChoice.setVisibility(View.VISIBLE);
             rightMenuChoice.setVisibility(View.GONE);
@@ -149,8 +134,6 @@ public class MainActivity extends AppCompatActivity implements MainNavigationLis
 
             accountButton.setSelected(true);
             chatListButton.setSelected(false);
-//            accountButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.ora_dark_grey));
-//            chatListButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.ora_orange));
 
             leftMenuChoice.setVisibility(View.VISIBLE);
             rightMenuChoice.setVisibility(View.VISIBLE);
@@ -161,9 +144,6 @@ public class MainActivity extends AppCompatActivity implements MainNavigationLis
             chatListButton.setSelected(true);
 
             menuTitle.setText(getString(R.string.app_name));
-
-//            accountButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.ora_dark_grey));
-//            chatListButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.ora_orange));
 
             leftMenuChoice.setVisibility(View.GONE);
             rightMenuChoice.setVisibility(View.GONE);
@@ -191,9 +171,10 @@ public class MainActivity extends AppCompatActivity implements MainNavigationLis
     @Click(R.id.right_menu_choice)
     protected void onClickRightMenuButton()
     {
-        //TODO : implement save
-
-        //saveProfile();
+        if (currentView == MainScreenView.EDIT_PROFILE)
+        {
+            editProfilePresenter.initiateSave();
+        }
     }
 
     @Override
