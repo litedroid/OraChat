@@ -105,10 +105,10 @@ public class ChatListFragment extends Fragment implements ChatListContract.View,
     }
 
     @Override
-    public void onSelectChat(int chatId)
+    public void onSelectChat(int chatId, String title)
     {
         Log.d(TAG, "onSelectChat: " + chatId);
 
-        mainNavigationListener.onLoadChatDetails(chatId);
+        mainNavigationListener.onLoadChatDetails(chatId, title);
     }
 }

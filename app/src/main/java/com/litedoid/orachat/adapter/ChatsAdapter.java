@@ -65,7 +65,7 @@ public class ChatsAdapter extends RecyclerView.Adapter<ChatViewHolder>
             @Override
             public void onClick(View v)
             {
-                chatListListener.onSelectChat(chat.getId());
+                chatListListener.onSelectChat(chat.getId(), chat.getName());
             }
         });
 

@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity implements MainNavigationLis
     }
 
     @Override
-    public void onLoadChatDetails(int chatId)
+    public void onLoadChatDetails(int chatId, String chatTitle)
     {
         Log.d(TAG, "onLoadChatDetails: " + chatId);
 
@@ -205,6 +205,8 @@ public class MainActivity extends AppCompatActivity implements MainNavigationLis
         showCurrentView();
 
         chatDetailsPresenter.loadChatDetails(chatId);
+
+        menuTitle.setText(chatTitle);
     }
 
     @Override
