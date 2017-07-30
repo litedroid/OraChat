@@ -3,9 +3,9 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
 
-        <!--<item name="colorPrimary">@color/ora_black</item>-->
-        <!--<item name="colorPrimaryDark">@color/ora_black</item>-->
-        <!--<item name="colorAccent">@color/ora_orange</item>-->
+        <item name="colorPrimary">@color/ora_grey_text</item>
+        <item name="colorPrimaryDark">@color/ora_black</item>
+        <item name="colorAccent">@color/ora_orange</item>
     </style>
 
 

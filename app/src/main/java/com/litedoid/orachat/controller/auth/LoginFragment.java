@@ -6,20 +6,18 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.widget.EditText;
 
-import com.google.gson.Gson;
 import com.litedoid.orachat.BuildConfig;
 import com.litedoid.orachat.R;
-import com.litedoid.orachat.api.APICallback;
-import com.litedoid.orachat.api.APIErrorType;
-import com.litedoid.orachat.api.client.OraChatAPIClient;
-import com.litedoid.orachat.interfaces.LoginListener;
+import com.litedoid.orachat.controller.main.MainActivity_;
+import com.litedoid.orachat.helpers.DialogHelper;
+import com.litedoid.orachat.interfaces.AuthNavigationListener;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
 @EFragment(R.layout.fragment_login)
-public class LoginFragment extends Fragment implements LoginListener
+public class LoginFragment extends Fragment implements LoginContract.View
 {
     private static final String TAG = LoginFragment.class.getSimpleName();
 
@@ -28,6 +26,10 @@ public class LoginFragment extends Fragment implements LoginListener
 
     @ViewById(R.id.passwordEditText)
     EditText passwordEditText;
+
+    private AuthNavigationListener authNavigationListener;
+
+    private LoginContract.Presenter presenter;
 
     public static LoginFragment newInstance()
     {
@@ -57,7 +59,6 @@ public class LoginFragment extends Fragment implements LoginListener
     {
         Log.d(TAG, "onResume");
         super.onResume();
-
     }
 
     @Override
@@ -68,29 +69,38 @@ public class LoginFragment extends Fragment implements LoginListener
     }
 
     @Override
-    public void onLogin()
+    public void setPresenter(LoginContract.Presenter presenter)
     {
-        Log.d(TAG, "onLogin");
+        this.presenter = presenter;
+    }
+
+    @Override
+    public void initiateLogin()
+    {
+        Log.d(TAG, "initiateLogin");
 
         String email = emailEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
 
-        new OraChatAPIClient().login(email, password, new APICallback()
-        {
-            @Override
-            public void onError(APIErrorType apiErrorType)
-            {
-                Log.d(TAG, "login Error: " + apiErrorType.name());
+        presenter.login(email, password);
+    }
 
-            }
+    @Override
+    public void showLoginSuccess()
+    {
+        MainActivity_.intent(getActivity()).start();
+        getActivity().finish();
+    }
 
-            @Override
-            public void onSuccess(Object o)
-            {
+    @Override
+    public void showLoginFailure()
+    {
+        DialogHelper.showOKDialog(getActivity(), R.string.update_user_error_title, R.string.update_user_error_message);
+    }
 
-                Log.d(TAG, "login Success: " + new Gson().toJson(o));
-
-            }
-        });
+    @Override
+    public void setAuthNavigationListener(AuthNavigationListener authNavigationListener)
+    {
+        this.authNavigationListener = authNavigationListener;
     }
 }

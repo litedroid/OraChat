@@ -6,12 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.litedoid.orachat.ApplicationSettings;
 import com.litedoid.orachat.R;
-import com.litedoid.orachat.controller.main.MainActivity_;
 import com.litedoid.orachat.fragment.RegisterFragment;
 import com.litedoid.orachat.fragment.RegisterFragment_;
-import com.litedoid.orachat.interfaces.LoginListener;
+import com.litedoid.orachat.interfaces.AuthNavigationListener;
 import com.litedoid.orachat.interfaces.RegisterListener;
 
 import org.androidannotations.annotations.AfterViews;
@@ -20,7 +18,7 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
 @EActivity(R.layout.activity_login)
-public class AuthActivity extends AppCompatActivity
+public class AuthActivity extends AppCompatActivity implements AuthNavigationListener
 {
     private static final String TAG = AuthActivity.class.getSimpleName();
 
@@ -33,10 +31,11 @@ public class AuthActivity extends AppCompatActivity
     TextView righttMenuChoice;
 
     LoginFragment loginFragment;
-    LoginListener loginListener;
+    LoginPresenter loginPresenter;
 
     RegisterFragment registerFragment;
     RegisterListener registerListener;
+
 
 
     @Override
@@ -46,11 +45,7 @@ public class AuthActivity extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
 
-        loginFragment = LoginFragment_.newInstance();
-        loginListener = loginFragment;
-
-        registerFragment = RegisterFragment_.newInstance();
-        registerListener = registerFragment;
+        createFragments();
     }
 
     @AfterViews
@@ -60,6 +55,24 @@ public class AuthActivity extends AppCompatActivity
 
         setMenuOptions();
         showCurrentView();
+    }
+
+    private void createFragments()
+    {
+        initLoginFragment();
+
+//        loginListener = loginFragment;
+
+        registerFragment = RegisterFragment_.newInstance();
+        registerListener = registerFragment;
+    }
+
+    private void initLoginFragment()
+    {
+        loginFragment = LoginFragment_.newInstance();
+        loginPresenter = new LoginPresenter(loginFragment);
+        loginFragment.setAuthNavigationListener(this);
+        loginFragment.setPresenter(loginPresenter);
     }
 
     @Click(R.id.left_menu_choice)
@@ -77,7 +90,7 @@ public class AuthActivity extends AppCompatActivity
 
         if (showLoginView)
         {
-            performLogin();
+            loginPresenter.initiateLogin();
         }
         else
         {
@@ -131,13 +144,15 @@ public class AuthActivity extends AppCompatActivity
         changeView();
     }
 
-    private void performLogin()
+    @Override
+    public void onShowRegister()
     {
-        loginListener.onLogin();
 
-        ApplicationSettings.sharedSettings().setLoggedIn();
+    }
 
-        MainActivity_.intent(AuthActivity.this).start();
-        finish();
+    @Override
+    public void onShowLogin()
+    {
+
     }
 }

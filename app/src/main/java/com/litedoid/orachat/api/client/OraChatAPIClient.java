@@ -219,6 +219,7 @@ public class OraChatAPIClient
                 int status = response.getStatus();
                 Log.d(TAG, "login status: " + status);
 
+                ApplicationSettings.sharedSettings().setLoggedIn();
                 AuthHelper.setAuthorizationTokenFromHeaders(response);
 
                 callback.onSuccess(result);

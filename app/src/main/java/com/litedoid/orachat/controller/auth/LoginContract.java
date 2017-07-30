@@ -1,23 +1,27 @@
 package com.litedoid.orachat.controller.auth;
 
 
-import com.litedoid.orachat.api.model.ChatMessage;
 import com.litedoid.orachat.controller.BasePresenter;
 import com.litedoid.orachat.controller.BaseView;
-
-import java.util.List;
+import com.litedoid.orachat.interfaces.AuthNavigationListener;
 
 public interface LoginContract
 {
     interface View extends BaseView<Presenter>
     {
-        void showChatDetails(List<ChatMessage> chatMessages);
+        void initiateLogin();
 
-        void addChatMessage();
+        void showLoginSuccess();
+
+        void showLoginFailure();
+
+        void setAuthNavigationListener(AuthNavigationListener authNavigationListener);
     }
 
     interface Presenter extends BasePresenter
     {
-        void loadChatDetails(int chatId);
+        void initiateLogin();
+
+        void login(String name, String password);
     }
 }

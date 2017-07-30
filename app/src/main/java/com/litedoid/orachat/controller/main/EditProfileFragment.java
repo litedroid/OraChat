@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.litedoid.orachat.R;
@@ -35,6 +37,9 @@ public class EditProfileFragment extends Fragment implements EditProfileContract
     @ViewById(R.id.confirmEditText)
     EditText confirmEditText;
 
+    @ViewById(R.id.logout_button)
+    Button logoutButton;
+
 
     public static EditProfileFragment newInstance()
     {
@@ -44,6 +49,7 @@ public class EditProfileFragment extends Fragment implements EditProfileContract
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState)
     {
+        Log.d(TAG, "onCreate");
         super.onCreate(savedInstanceState);
     }
 
@@ -51,6 +57,8 @@ public class EditProfileFragment extends Fragment implements EditProfileContract
     void afterViews()
     {
         Log.d(TAG, "afterViews");
+
+        logoutButton.setVisibility(View.VISIBLE);
 
         presenter.loadProfile();
     }
@@ -73,6 +81,7 @@ public class EditProfileFragment extends Fragment implements EditProfileContract
     @Override
     public void setPresenter(EditProfileContract.Presenter presenter)
     {
+        Log.d(TAG, "setPresenter");
         this.presenter = presenter;
     }
 
@@ -100,18 +109,24 @@ public class EditProfileFragment extends Fragment implements EditProfileContract
     @Override
     public void showSaveProfileSuccess()
     {
+        Log.d(TAG, "showSaveProfileSuccess");
+
         DialogHelper.showOKDialog(getActivity(), R.string.update_user_success_title, R.string.update_user_success_message);
     }
 
     @Override
     public void showSaveProfileFailure()
     {
+        Log.d(TAG, "showSaveProfileFailure");
+
         DialogHelper.showOKDialog(getActivity(), R.string.update_user_error_title, R.string.update_user_error_message);
     }
 
     @Click(R.id.logout_button)
     protected void onClickLogout()
     {
+        Log.d(TAG, "onClickLogout");
+
         new android.app.AlertDialog.Builder(getActivity())
                 .setTitle(getString(R.string.logout_confirmation_title))
                 .setMessage(getString(R.string.logout_confirmation_message))
