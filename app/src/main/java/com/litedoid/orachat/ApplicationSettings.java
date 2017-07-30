@@ -33,6 +33,15 @@ public class ApplicationSettings
         editor.putBoolean(Constants.SETTINGS_LOGGED_IN, false).commit();
     }
 
+    public void setAuthorizationToken(String authorizationToken)
+    {
+        editor.putString(Constants.SETTINGS_BEARER_TOKEN, authorizationToken).commit();
+    }
+
+    public String getAuthroizationToken()
+    {
+        return settings.getString(Constants.SETTINGS_BEARER_TOKEN, "");
+    }
 
     public static ApplicationSettings sharedSettings()
     {

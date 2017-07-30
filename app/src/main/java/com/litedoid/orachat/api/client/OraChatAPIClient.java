@@ -3,6 +3,7 @@ package com.litedoid.orachat.api.client;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.litedoid.orachat.ApplicationSettings;
 import com.litedoid.orachat.Constants;
 import com.litedoid.orachat.api.APICallback;
 import com.litedoid.orachat.api.APIErrorType;
@@ -18,6 +19,7 @@ import java.util.Map;
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
+import retrofit.client.Header;
 import retrofit.client.Response;
 import retrofit.converter.GsonConverter;
 import retrofit.mime.TypedByteArray;
@@ -37,6 +39,9 @@ public class OraChatAPIClient
 
     // Paths
     public static final String PATH_ID = "id";
+
+    // Headers
+    public static final String HEADER_AUTHORIZATION = "Authorization";
 
     private static RestAdapter restAdapter;
     private OraChatAPIInterface apiService;
@@ -113,6 +118,19 @@ public class OraChatAPIClient
             public void success(LoginResult result, Response response)
             {
                 Log.d(TAG, "login success: " + new Gson().toJson(result));
+
+                int status = response.getStatus();
+                Log.d(TAG, "login status: " + status);
+
+                for (Header header : response.getHeaders())
+                {
+                    Log.d(TAG, header.getName() + " :: " + header.getValue());
+
+                    if (header.getName().equalsIgnoreCase(HEADER_AUTHORIZATION))
+                    {
+                        ApplicationSettings.sharedSettings().setLoggedIn();
+                    }
+                }
 
                 callback.onSuccess(result);
             }
