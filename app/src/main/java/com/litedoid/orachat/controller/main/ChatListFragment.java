@@ -79,7 +79,6 @@ public class ChatListFragment extends Fragment implements ChatListContract.View,
         super.onPause();
     }
 
-
     @Override
     public void setPresenter(ChatListContract.Presenter presenter)
     {
@@ -92,6 +91,8 @@ public class ChatListFragment extends Fragment implements ChatListContract.View,
     public void showChats(List<ChatListResult.Chat> chats)
     {
         Log.d(TAG, "showChats count: " + chats.size());
+
+        this.chats.clear();
 
         this.chats.addAll(chats);
         chatsAdapter.notifyDataSetChanged();

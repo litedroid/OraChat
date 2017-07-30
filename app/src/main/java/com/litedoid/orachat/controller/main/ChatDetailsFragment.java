@@ -92,6 +92,8 @@ public class ChatDetailsFragment extends Fragment implements ChatDetailsContract
     {
         Log.d(TAG, "showChatDetails: " + chatMessages.size());
 
+        this.chatMessages.clear();
+
         this.chatMessages.addAll(chatMessages);
         messagesAdapter.notifyDataSetChanged();
     }

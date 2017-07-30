@@ -12,6 +12,7 @@ import com.litedoid.orachat.R;
 import com.litedoid.orachat.interfaces.MainNavigationListener;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
@@ -62,7 +63,6 @@ public class MainActivity extends AppCompatActivity implements MainNavigationLis
     {
         Log.d(TAG, "initViews");
 
-        setMenuOptions();
         showCurrentView();
     }
 
@@ -88,30 +88,28 @@ public class MainActivity extends AppCompatActivity implements MainNavigationLis
         chatDetailsFragment.setPresenter(chatDetailsPresenter);
     }
 
-    private void setMenuOptions()
-    {
-        if (currentView == MainScreenView.CHAT_DETAILS)
-        {
-            leftMenuChoice.setVisibility(View.VISIBLE);
-            rightMenuChoice.setVisibility(View.GONE);
-        }
-        else if (currentView == MainScreenView.EDIT_PROFILE)
-        {
-            leftMenuChoice.setVisibility(View.GONE);
-            rightMenuChoice.setVisibility(View.VISIBLE);
-
-        }
-        else
-        {
-            leftMenuChoice.setVisibility(View.GONE);
-            rightMenuChoice.setVisibility(View.GONE);
-        }
-    }
-
+//    private void setMenuOptions()
+//    {
+//        if (currentView == MainScreenView.CHAT_DETAILS)
+//        {
+//            leftMenuChoice.setVisibility(View.VISIBLE);
+//            rightMenuChoice.setVisibility(View.GONE);
+//        }
+//        else if (currentView == MainScreenView.EDIT_PROFILE)
+//        {
+//            leftMenuChoice.setVisibility(View.GONE);
+//            rightMenuChoice.setVisibility(View.VISIBLE);
+//
+//        }
+//        else
+//        {
+//            leftMenuChoice.setVisibility(View.GONE);
+//            rightMenuChoice.setVisibility(View.GONE);
+//        }
+//    }
 
     private void showCurrentView()
     {
-
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
         if (currentView == MainScreenView.CHAT_DETAILS)
@@ -128,6 +126,74 @@ public class MainActivity extends AppCompatActivity implements MainNavigationLis
         }
 
         fragmentTransaction.commit();
+
+//        setMenuOptions();
+        setNavigationOptions();
+    }
+
+    private void setNavigationOptions()
+    {
+        if (currentView == MainScreenView.CHAT_DETAILS)
+        {
+            accountButton.setSelected(false);
+            chatListButton.setSelected(true);
+//            accountButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.ora_orange));
+//            chatListButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.ora_dark_grey));
+
+            leftMenuChoice.setVisibility(View.VISIBLE);
+            rightMenuChoice.setVisibility(View.GONE);
+        }
+        else if (currentView == MainScreenView.EDIT_PROFILE)
+        {
+            menuTitle.setText(getString(R.string.account));
+
+            accountButton.setSelected(true);
+            chatListButton.setSelected(false);
+//            accountButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.ora_dark_grey));
+//            chatListButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.ora_orange));
+
+            leftMenuChoice.setVisibility(View.VISIBLE);
+            rightMenuChoice.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            accountButton.setSelected(false);
+            chatListButton.setSelected(true);
+
+            menuTitle.setText(getString(R.string.app_name));
+
+//            accountButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.ora_dark_grey));
+//            chatListButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.ora_orange));
+
+            leftMenuChoice.setVisibility(View.GONE);
+            rightMenuChoice.setVisibility(View.GONE);
+        }
+    }
+
+    @Click(R.id.account_bottom_menu_choice)
+    protected void onClickAccountButton()
+    {
+        onShowProfile();
+    }
+
+    @Click(R.id.chatlist_bottom_menu_choice)
+    protected void onClickChatList()
+    {
+        onShowChatList();
+    }
+
+    @Click(R.id.left_menu_choice)
+    protected void onClickLeftMenuButton()
+    {
+        performBackNavigation();
+    }
+
+    @Click(R.id.right_menu_choice)
+    protected void onClickRightMenuButton()
+    {
+        //TODO : implement save
+
+        //saveProfile();
     }
 
     @Override
@@ -152,6 +218,22 @@ public class MainActivity extends AppCompatActivity implements MainNavigationLis
     public void onShowProfile()
     {
         currentView = MainScreenView.EDIT_PROFILE;
+        showCurrentView();
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        performBackNavigation();
+    }
+
+    private void performBackNavigation()
+    {
+        if (currentView == MainScreenView.CHAT_LIST)
+            finish();
+        else
+            currentView = MainScreenView.CHAT_LIST;
+
         showCurrentView();
     }
 
