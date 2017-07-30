@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.litedoid.orachat.ApplicationSettings;
 import com.litedoid.orachat.R;
+import com.litedoid.orachat.controller.auth.AuthActivity_;
 import com.litedoid.orachat.controller.main.MainActivity_;
 
 import org.androidannotations.annotations.AfterViews;
@@ -34,13 +35,13 @@ public class SplashActivity extends AppCompatActivity
         if (ApplicationSettings.sharedSettings().isLoggedIn())
         {
             MainActivity_.intent(SplashActivity.this).start();
-            finish();
         }
         else
         {
-            LoginOrRegisterActivity_.intent(SplashActivity.this).start();
-            finish();
+            AuthActivity_.intent(SplashActivity.this).start();
         }
+
+        finish();
     }
 
 }

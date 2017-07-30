@@ -88,7 +88,7 @@ public class EditProfileFragment extends Fragment implements EditProfileContract
     @Override
     public void initiateSaveProfile()
     {
-        Log.d(TAG, "onRegister");
+        Log.d(TAG, "initiateSaveProfile");
         String name = nameEditText.getText().toString().trim();
         String email = emailEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();

@@ -25,7 +25,7 @@
         <activity android:name=".controller.main.MainActivity_"
                   android:screenOrientation="portrait"/>
 
-        <activity android:name=".activity.LoginOrRegisterActivity_"
+        <activity android:name=".controller.auth.AuthActivity_"
                   android:screenOrientation="portrait"/>
 
     </application>

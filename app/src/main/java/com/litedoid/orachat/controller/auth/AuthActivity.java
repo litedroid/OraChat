@@ -1,4 +1,4 @@
-package com.litedoid.orachat.activity;
+package com.litedoid.orachat.controller.auth;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -9,8 +9,6 @@ import android.widget.TextView;
 import com.litedoid.orachat.ApplicationSettings;
 import com.litedoid.orachat.R;
 import com.litedoid.orachat.controller.main.MainActivity_;
-import com.litedoid.orachat.fragment.LoginFragment;
-import com.litedoid.orachat.fragment.LoginFragment_;
 import com.litedoid.orachat.fragment.RegisterFragment;
 import com.litedoid.orachat.fragment.RegisterFragment_;
 import com.litedoid.orachat.interfaces.LoginListener;
@@ -22,9 +20,9 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
 @EActivity(R.layout.activity_login)
-public class LoginOrRegisterActivity extends AppCompatActivity
+public class AuthActivity extends AppCompatActivity
 {
-    private static final String TAG = LoginOrRegisterActivity.class.getSimpleName();
+    private static final String TAG = AuthActivity.class.getSimpleName();
 
     private boolean showLoginView = true;
 
@@ -139,7 +137,7 @@ public class LoginOrRegisterActivity extends AppCompatActivity
 
         ApplicationSettings.sharedSettings().setLoggedIn();
 
-        MainActivity_.intent(LoginOrRegisterActivity.this).start();
+        MainActivity_.intent(AuthActivity.this).start();
         finish();
     }
 }

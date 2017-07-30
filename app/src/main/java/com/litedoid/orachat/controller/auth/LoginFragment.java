@@ -1,4 +1,4 @@
-package com.litedoid.orachat.fragment;
+package com.litedoid.orachat.controller.auth;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
