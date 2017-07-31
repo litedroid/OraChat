@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.widget.EditText;
 
-import com.litedoid.orachat.BuildConfig;
 import com.litedoid.orachat.R;
 import com.litedoid.orachat.controller.main.MainActivity_;
 import com.litedoid.orachat.helpers.DialogHelper;
@@ -46,12 +45,6 @@ public class LoginFragment extends Fragment implements LoginContract.View
     void afterViews()
     {
         Log.d(TAG, "afterViews");
-
-        if (BuildConfig.DEBUG)
-        {
-            emailEditText.setText("test@test.com");
-            passwordEditText.setText("password");
-        }
     }
 
     @Override

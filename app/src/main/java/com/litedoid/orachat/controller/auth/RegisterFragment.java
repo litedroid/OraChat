@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.widget.EditText;
 
-import com.litedoid.orachat.BuildConfig;
 import com.litedoid.orachat.R;
 import com.litedoid.orachat.controller.main.MainActivity_;
 import com.litedoid.orachat.helpers.DialogHelper;
@@ -52,14 +51,6 @@ public class RegisterFragment extends Fragment implements RegisterContract.View
     void afterViews()
     {
         Log.d(TAG, "afterViews");
-
-        if (BuildConfig.DEBUG)
-        {
-            nameEditText.setText("Test User");
-            emailEditText.setText("test@test.com");
-            passwordEditText.setText("password");
-            confirmEditText.setText("password");
-        }
     }
 
     @Override

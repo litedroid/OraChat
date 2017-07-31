@@ -193,16 +193,6 @@ public class MainActivity extends AppCompatActivity implements MainNavigationLis
     }
 
     @Override
-    public void onShowChatList()
-    {
-    }
-
-    @Override
-    public void onShowProfile()
-    {
-    }
-
-    @Override
     public void onBackPressed()
     {
         performBackNavigation();
