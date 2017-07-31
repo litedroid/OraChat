@@ -6,6 +6,7 @@ An Android app based on the requirements found at: http://docs.oracodechallenge.
 - REST API calls
 - Gson to deserialize server responses
 
+Minimum Android level - 19 - v4.4
 
 ### Utilizing:
 - Retrofit for asynchronous API calls
@@ -33,3 +34,5 @@ An Android app based on the requirements found at: http://docs.oracodechallenge.
 - Progress views for async calls
 - Test MVP layers
 - Save email / name to local prefs
+- Network connection check/listener
+- Add loader/manager/repository for chats and messages
