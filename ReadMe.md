@@ -7,26 +7,26 @@ An Android app based on the requirements found at: http://docs.oracodechallenge.
 - Gson to deserialize server responses
 
 
-###Utilizing:
+### Utilizing:
 - Retrofit for asynchronous API calls
 - Gson
 - Android Annotations
 - Joda time
 - Constraint Layout
 
-###Implemented:
+### Implemented:
 - Login
 - Register
 - Logout
 - Chat List
 - Chat Message List
 
-###Not Implemented:
+### Not Implemented:
 - Add Chat Message
 - Add Chat
 - Edit Chat
 
-###To Do:
+### To Do:
 - Handle error messages returned from server
 - Paging for chat and message lists
 - Progress views for async calls
