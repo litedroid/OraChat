@@ -28,7 +28,8 @@ An Android app based on the requirements found at: http://docs.oracodechallenge.
 
 ### To Do:
 - Handle error messages returned from server
+- Login/Register client validations
 - Paging for chat and message lists
 - Progress views for async calls
-- Test layers
+- Test MVP layers
 - Save email / name to local prefs
