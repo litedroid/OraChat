@@ -1,7 +1,6 @@
 package com.litedoid.orachat.activity;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
@@ -10,8 +9,11 @@ import com.litedoid.orachat.R;
 import com.litedoid.orachat.controller.auth.AuthActivity_;
 import com.litedoid.orachat.controller.main.MainActivity_;
 
-import butterknife.ButterKnife;
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.UiThread;
 
+@EActivity(R.layout.activity_splash)
 public class SplashActivity extends AppCompatActivity
 {
     private static final String TAG = SplashActivity.class.getSimpleName();
@@ -22,37 +24,24 @@ public class SplashActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_splash);
-        ButterKnife.bind(this);
     }
 
-    @Override
-    protected void onResume()
+    @UiThread(delay = SPLASH_DURATION)
+    @AfterViews
+    void initViews()
     {
-        super.onResume();
+        Log.d(TAG, "initViews");
 
-        Log.d(TAG, "onResume");
-
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable()
+        if (ApplicationSettings.sharedSettings().isLoggedIn())
         {
-            @Override
-            public void run()
-            {
-                if (ApplicationSettings.sharedSettings().isLoggedIn())
-                {
-                    MainActivity_.intent(SplashActivity.this).start();
-                }
-                else
-                {
-                    AuthActivity_.intent(SplashActivity.this).start();
-                }
+            MainActivity_.intent(SplashActivity.this).start();
+        }
+        else
+        {
+            AuthActivity_.intent(SplashActivity.this).start();
+        }
 
-                finish();
-            }
-        }, SPLASH_DURATION);
-
+        finish();
     }
 
 }
