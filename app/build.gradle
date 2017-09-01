@@ -60,8 +60,6 @@ dependencies {
 
     compile 'joda-time:joda-time:2.9.3'
 
-    compile 'com.squareup.retrofit:retrofit:1.9.0'
-
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
 

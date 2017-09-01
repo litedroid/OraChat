@@ -5,8 +5,7 @@ import android.util.Log;
 
 import com.litedoid.orachat.ApplicationSettings;
 
-import retrofit.client.Header;
-import retrofit.client.Response;
+import retrofit2.Response;
 
 import static com.litedoid.orachat.api.client.OraChatAPIClient.HEADER_AUTHORIZATION;
 
@@ -16,15 +15,10 @@ public class AuthHelper
 
     public static void setAuthorizationTokenFromHeaders(Response response)
     {
-        for (Header header : response.getHeaders())
-        {
-            Log.d(TAG, header.getName() + " :: " + header.getValue());
+        Log.d(TAG, response.headers().get(HEADER_AUTHORIZATION));
 
-            if (header.getName().equalsIgnoreCase(HEADER_AUTHORIZATION))
-            {
-                ApplicationSettings.sharedSettings().setLoggedIn();
-            }
-        }
+        if (response.headers().get(HEADER_AUTHORIZATION) != null)
+            ApplicationSettings.sharedSettings().setLoggedIn();
     }
-
 }
+

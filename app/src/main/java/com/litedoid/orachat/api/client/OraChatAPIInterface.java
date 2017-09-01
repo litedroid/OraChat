@@ -9,14 +9,14 @@ import com.litedoid.orachat.api.model.UpdateUserResult;
 
 import java.util.Map;
 
-import retrofit.Callback;
-import retrofit.http.Body;
-import retrofit.http.GET;
-import retrofit.http.Header;
-import retrofit.http.PATCH;
-import retrofit.http.POST;
-import retrofit.http.Path;
-import retrofit.http.Query;
+import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.PATCH;
+import retrofit2.http.POST;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface OraChatAPIInterface
 {
@@ -30,23 +30,23 @@ public interface OraChatAPIInterface
     String ENDPOINT_CHAT_MESSAGES = "/chats/{id}/chat_messages";
 
     @POST(ENDPOINT_USERS)
-    void createUser(@Body Map<String, String> map, Callback<CreateUserResult> callback);
+    Call<CreateUserResult> createUser(@Body Map<String, String> map);
 
     @GET(ENDPOINT_CURRENT_USER)
-    void getCurrentUser(@Header(OraChatAPIClient.HEADER_AUTHORIZATION) String authHeader, Callback<CurrentUserResult> callback);
+    Call<CurrentUserResult> getCurrentUser(@Header(OraChatAPIClient.HEADER_AUTHORIZATION) String authHeader);
 
     @PATCH(ENDPOINT_CURRENT_USER)
-    void updateUser(@Header(OraChatAPIClient.HEADER_AUTHORIZATION) String authHeader, @Body Map<String, String> map, Callback<UpdateUserResult> callback);
+    Call<UpdateUserResult> updateUser(@Header(OraChatAPIClient.HEADER_AUTHORIZATION) String authHeader, @Body Map<String, String> map);
 
     @POST(ENDPOINT_LOGIN)
-    void login(@Body Map<String, String> map, Callback<LoginResult> callback);
+    Call<LoginResult> login(@Body Map<String, String> map);
 
     @POST(ENDPOINT_LOGOUT)
-    void logout(@Header(OraChatAPIClient.HEADER_AUTHORIZATION) String authHeader, Callback<Object> callback);
+    Call<Object> logout(@Header(OraChatAPIClient.HEADER_AUTHORIZATION) String authHeader);
 
     @GET(ENDPOINT_CHATS)
-    void getChatList(@Query(OraChatAPIClient.KEY_PAGE) int page, @Query(OraChatAPIClient.KEY_LIMIT) int limit, Callback<ChatListResult> callback);
+    Call<ChatListResult> getChatList(@Query(OraChatAPIClient.KEY_PAGE) int page, @Query(OraChatAPIClient.KEY_LIMIT) int limit);
 
     @GET(ENDPOINT_CHAT_MESSAGES)
-    void getChatMessages(@Path(OraChatAPIClient.PATH_ID) int id, @Query(OraChatAPIClient.KEY_PAGE) int page, @Query(OraChatAPIClient.KEY_LIMIT) int limit, Callback<ChatMessagesResult> callback);
+    Call<ChatMessagesResult> getChatMessages(@Path(OraChatAPIClient.PATH_ID) int id, @Query(OraChatAPIClient.KEY_PAGE) int page, @Query(OraChatAPIClient.KEY_LIMIT) int limit);
 }
