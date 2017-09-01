@@ -170,6 +170,19 @@
         app:layout_constraintLeft_toRightOf="@+id/confirmEditText"
         app:layout_constraintTop_toBottomOf="@+id/confirmEditText"/>
 
+    <Button
+        android:id="@+id/register_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginTop="16dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:gravity="center"
+        android:text="@string/register"
+        android:textColor="@color/ora_orange"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/confirmLineView"
+        tools:visibility="visible"/>
 
     <Button
         android:id="@+id/logout_button"
@@ -177,7 +190,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="?android:attr/selectableItemBackground"
-        android:gravity="center_horizontal"
+        android:gravity="center"
         android:text="@string/logout"
         android:textColor="@color/ora_orange"
         android:visibility="gone"

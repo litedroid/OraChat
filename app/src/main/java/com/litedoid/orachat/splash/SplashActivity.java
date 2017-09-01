@@ -52,6 +52,5 @@ public class SplashActivity extends AppCompatActivity
     private void gotoLoginActivity()
     {
         LoginActivity_.intent(SplashActivity.this).start();
-
     }
 }
