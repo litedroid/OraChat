@@ -25,9 +25,6 @@
         <activity android:name=".controller.main.MainActivity_"
                   android:screenOrientation="portrait"/>
 
-        <activity android:name=".controller.auth.AuthActivity_"
-                  android:screenOrientation="portrait"/>
-
         <activity android:name=".controller.auth.NewLoginActivity_"/>
 
         <activity android:name=".auth.login.LoginActivity_"
