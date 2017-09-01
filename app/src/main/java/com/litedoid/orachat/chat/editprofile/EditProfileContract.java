@@ -16,6 +16,8 @@ public interface EditProfileContract
         void showSaveProfileSuccess();
 
         void showSaveProfileFailure();
+
+        void showLogoutMessage();
     }
 
     interface Presenter extends BasePresenter

@@ -3,6 +3,8 @@ package com.litedoid.orachat.chat.editprofile;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.View;
@@ -43,6 +45,8 @@ public class EditProfileFragment extends Fragment implements EditProfileContract
     @ViewById(R.id.register_button)
     Button saveButton;
 
+    @ViewById(R.id.register_layout)
+    ConstraintLayout registerLayout;
 
     public static EditProfileFragment newInstance()
     {
@@ -102,7 +106,7 @@ public class EditProfileFragment extends Fragment implements EditProfileContract
     {
         Log.d(TAG, "showSaveProfileSuccess");
 
-        DialogHelper.showOKDialog(getActivity(), R.string.update_user_success_title, R.string.update_user_success_message);
+        Snackbar.make(registerLayout, getActivity().getString(R.string.update_user_success_title), Snackbar.LENGTH_LONG).show();
     }
 
     @Override
@@ -111,6 +115,12 @@ public class EditProfileFragment extends Fragment implements EditProfileContract
         Log.d(TAG, "showSaveProfileFailure");
 
         DialogHelper.showOKDialog(getActivity(), R.string.update_user_error_title, R.string.update_user_error_message);
+    }
+
+    @Override
+    public void showLogoutMessage()
+    {
+//        DialogHelper.showOKDialog(getActivity(), R.string.logout_success_message, R.string.update_user_error_message);
     }
 
     @Click(R.id.logout_button)

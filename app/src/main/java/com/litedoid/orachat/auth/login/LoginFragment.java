@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.EditText;
 
 import com.litedoid.orachat.R;
+import com.litedoid.orachat.chat.list.ChatListActivity_;
 import com.litedoid.orachat.helpers.DialogHelper;
 
 import org.androidannotations.annotations.AfterViews;
@@ -78,7 +79,7 @@ public class LoginFragment extends Fragment implements LoginContract.View
     @Override
     public void showLoginSuccess()
     {
-        LoginActivity_.intent(getActivity()).start();
+        ChatListActivity_.intent(getActivity()).start();
         getActivity().finish();
     }
 

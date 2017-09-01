@@ -72,6 +72,8 @@ public class EditProfilePresenter implements EditProfileContract.Presenter
             public void onSuccess(Object o)
             {
                 Log.d(TAG, "logout Success");
+
+                editProfileView.showLogoutMessage();
             }
         });
 

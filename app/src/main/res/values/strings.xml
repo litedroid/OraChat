@@ -49,4 +49,7 @@
     <string name="login_error_title">Error</string>
     <string name="login_error_message">There was an error with your credentials. Please confirm them and try again.</string>
 
+    <string name="logout_success_message">You have been logged out.</string>
+
+
 </resources>
