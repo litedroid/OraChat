@@ -19,10 +19,10 @@ public class NewLoginActivity extends AppCompatActivity implements NewLoginView
 {
     private static final String TAG = NewLoginActivity.class.getSimpleName();
 
-    @ViewById(R.id.username_edittext)
+    @ViewById(R.id.new_username_edittext)
     TextView userNameEditText;
 
-    @ViewById(R.id.passwordEditText)
+    @ViewById(R.id.new_password_edittext)
     TextView passwordEditText;
 
     NewLoginPresenter loginPresenter;
@@ -44,7 +44,7 @@ public class NewLoginActivity extends AppCompatActivity implements NewLoginView
 
     }
 
-    @Click(R.id.login_button)
+    @Click(R.id.new_login_button)
     protected void onLoginButtonClick()
     {
         loginPresenter.login(userNameEditText.getText().toString(), passwordEditText.getText().toString());

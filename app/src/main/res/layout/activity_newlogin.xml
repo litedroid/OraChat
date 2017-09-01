@@ -7,19 +7,19 @@
     android:orientation="vertical">
 
     <EditText
-        android:id="@+id/username_edittext"
+        android:id="@+id/new_username_edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/email"/>
 
     <EditText
-        android:id="@+id/password_edittext"
+        android:id="@+id/new_password_edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/password"/>
 
     <Button
-        android:id="@+id/login_button"
+        android:id="@+id/new_login_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/login"/>

@@ -24,7 +24,7 @@ public class NewLoginActivityTest
     public void checkUsernameEditTextIsDisplayed()
     {
         activityTestRule.launchActivity((new Intent()));
-        onView(withId(R.id.username_edittext)).check(matches(isDisplayed()));
+        onView(withId(R.id.new_username_edittext)).check(matches(isDisplayed()));
     }
 
 //    @Test

@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".activity.SplashActivity_"
+        <activity android:name=".splash.SplashActivity_"
                   android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -27,7 +27,11 @@
 
         <activity android:name=".controller.auth.AuthActivity_"
                   android:screenOrientation="portrait"/>
+
         <activity android:name=".controller.auth.NewLoginActivity_"/>
+
+        <activity android:name=".auth.login.LoginActivity_"
+                  android:screenOrientation="portrait"/>
 
     </application>
 

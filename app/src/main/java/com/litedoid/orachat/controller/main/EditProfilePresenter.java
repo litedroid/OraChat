@@ -6,7 +6,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.litedoid.orachat.ApplicationSettings;
-import com.litedoid.orachat.activity.SplashActivity_;
+import com.litedoid.orachat.splash.SplashActivity_;
 import com.litedoid.orachat.api.APICallback;
 import com.litedoid.orachat.api.APIErrorType;
 import com.litedoid.orachat.api.client.OraChatAPIClient;
