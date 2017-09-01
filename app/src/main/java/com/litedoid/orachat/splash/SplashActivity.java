@@ -7,7 +7,7 @@ import android.util.Log;
 import com.litedoid.orachat.ApplicationSettings;
 import com.litedoid.orachat.R;
 import com.litedoid.orachat.auth.login.LoginActivity_;
-import com.litedoid.orachat.controller.main.MainActivity_;
+import com.litedoid.orachat.chat.list.ChatListActivity_;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
@@ -46,7 +46,7 @@ public class SplashActivity extends AppCompatActivity
 
     private void gotoMainActivity()
     {
-        MainActivity_.intent(SplashActivity.this).start();
+        ChatListActivity_.intent(SplashActivity.this).start();
     }
 
     private void gotoLoginActivity()

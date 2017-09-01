@@ -1,4 +1,4 @@
-package com.litedoid.orachat.controller.main;
+package com.litedoid.orachat.chat.editprofile;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -40,6 +40,9 @@ public class EditProfileFragment extends Fragment implements EditProfileContract
     @ViewById(R.id.logout_button)
     Button logoutButton;
 
+    @ViewById(R.id.register_button)
+    Button saveButton;
+
 
     public static EditProfileFragment newInstance()
     {
@@ -58,25 +61,13 @@ public class EditProfileFragment extends Fragment implements EditProfileContract
     {
         Log.d(TAG, "afterViews");
 
+        saveButton.setText(R.string.save);
+
         logoutButton.setVisibility(View.VISIBLE);
 
         presenter.loadProfile();
     }
 
-    @Override
-    public void onResume()
-    {
-        Log.d(TAG, "onResume");
-        super.onResume();
-
-    }
-
-    @Override
-    public void onPause()
-    {
-        Log.d(TAG, "onPause");
-        super.onPause();
-    }
 
     @Override
     public void setPresenter(EditProfileContract.Presenter presenter)
@@ -94,10 +85,10 @@ public class EditProfileFragment extends Fragment implements EditProfileContract
         emailEditText.setText(user.getEmail());
     }
 
-    @Override
-    public void initiateSaveProfile()
+    @Click(R.id.register_button)
+    public void onClickSaveProfile()
     {
-        Log.d(TAG, "initiateSaveProfile");
+        Log.d(TAG, "onClickSaveProfile");
         String name = nameEditText.getText().toString().trim();
         String email = emailEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();

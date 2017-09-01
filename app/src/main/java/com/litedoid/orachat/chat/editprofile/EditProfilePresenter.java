@@ -1,4 +1,4 @@
-package com.litedoid.orachat.controller.main;
+package com.litedoid.orachat.chat.editprofile;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -78,12 +78,6 @@ public class EditProfilePresenter implements EditProfileContract.Presenter
         SplashActivity_.intent(activity)
                 .flags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 .start();
-    }
-
-    @Override
-    public void initiateSave()
-    {
-        editProfileView.initiateSaveProfile();
     }
 
     @Override

@@ -64,11 +64,6 @@ public class LoginActivity extends AppCompatActivity
         leftMenuChoice.setText(getString(R.string.register));
     }
 
-    private void changeView()
-    {
-        setMenuOptions();
-        showCurrentView();
-    }
 
     private void showCurrentView()
     {

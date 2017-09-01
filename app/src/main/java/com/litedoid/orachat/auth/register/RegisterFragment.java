@@ -7,7 +7,7 @@ import android.util.Log;
 import android.widget.EditText;
 
 import com.litedoid.orachat.R;
-import com.litedoid.orachat.controller.main.MainActivity_;
+import com.litedoid.orachat.chat.list.ChatListActivity_;
 import com.litedoid.orachat.helpers.DialogHelper;
 
 import org.androidannotations.annotations.AfterViews;
@@ -88,7 +88,7 @@ public class RegisterFragment extends Fragment implements RegisterContract.View
     @Override
     public void showRegisterSuccess()
     {
-        MainActivity_.intent(getActivity()).start();
+        ChatListActivity_.intent(getActivity()).start();
         getActivity().finish();
     }
 

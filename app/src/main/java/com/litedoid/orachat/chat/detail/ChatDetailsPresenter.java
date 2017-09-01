@@ -1,4 +1,4 @@
-package com.litedoid.orachat.controller.main;
+package com.litedoid.orachat.chat.detail;
 
 import android.util.Log;
 

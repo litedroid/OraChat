@@ -1,4 +1,4 @@
-package com.litedoid.orachat.controller.main;
+package com.litedoid.orachat.chat.list;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,8 +9,8 @@ import android.util.Log;
 import com.litedoid.orachat.R;
 import com.litedoid.orachat.adapter.ChatsAdapter;
 import com.litedoid.orachat.api.model.ChatListResult;
+import com.litedoid.orachat.chat.detail.ChatDetailsActivity_;
 import com.litedoid.orachat.interfaces.ChatListListener;
-import com.litedoid.orachat.interfaces.MainNavigationListener;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
@@ -27,8 +27,6 @@ public class ChatListFragment extends Fragment implements ChatListContract.View,
     private static final String TAG = ChatListFragment.class.getSimpleName();
 
     private ChatListContract.Presenter presenter;
-
-    private MainNavigationListener mainNavigationListener;
 
     @ViewById(R.id.chat_recycler_view)
     protected RecyclerView chatRecyclerView;
@@ -99,16 +97,10 @@ public class ChatListFragment extends Fragment implements ChatListContract.View,
     }
 
     @Override
-    public void setMainNavigationListener(MainNavigationListener mainNavigationListener)
-    {
-        this.mainNavigationListener = mainNavigationListener;
-    }
-
-    @Override
     public void onSelectChat(int chatId, String title)
     {
         Log.d(TAG, "onSelectChat: " + chatId);
 
-        mainNavigationListener.onLoadChatDetails(chatId, title);
+        ChatDetailsActivity_.intent(getActivity()).chatId(chatId).chatName(title).start();
     }
 }

@@ -1,4 +1,4 @@
-package com.litedoid.orachat.controller.main;
+package com.litedoid.orachat.chat.editprofile;
 
 
 import android.app.Activity;
@@ -13,8 +13,6 @@ public interface EditProfileContract
     {
         void showProfile(User user);
 
-        void initiateSaveProfile();
-
         void showSaveProfileSuccess();
 
         void showSaveProfileFailure();
@@ -25,8 +23,6 @@ public interface EditProfileContract
         void loadProfile();
 
         void logout(Activity activity);
-
-        void initiateSave();
 
         void saveProfile(String name, String email, String password, String confirm);
     }

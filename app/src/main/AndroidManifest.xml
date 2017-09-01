@@ -22,8 +22,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".controller.main.MainActivity_"
-                  android:screenOrientation="portrait"/>
 
         <activity android:name=".controller.auth.NewLoginActivity_"/>
 
@@ -31,6 +29,15 @@
                   android:screenOrientation="portrait"/>
 
         <activity android:name=".auth.register.RegisterActivity_"
+                  android:screenOrientation="portrait"/>
+
+        <activity android:name=".chat.list.ChatListActivity_"
+                  android:screenOrientation="portrait"/>
+
+        <activity android:name=".chat.detail.ChatDetailsActivity_"
+                  android:screenOrientation="portrait"/>
+
+        <activity android:name=".chat.editprofile.EditProfileActivity_"
                   android:screenOrientation="portrait"/>
 
     </application>

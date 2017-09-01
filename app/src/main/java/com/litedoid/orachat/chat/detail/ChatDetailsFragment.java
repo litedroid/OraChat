@@ -1,4 +1,4 @@
-package com.litedoid.orachat.controller.main;
+package com.litedoid.orachat.chat.detail;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,6 +13,7 @@ import com.litedoid.orachat.api.model.ChatMessage;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
@@ -24,6 +25,9 @@ import static com.google.gson.internal.$Gson$Preconditions.checkNotNull;
 public class ChatDetailsFragment extends Fragment implements ChatDetailsContract.View
 {
     private static final String TAG = ChatDetailsFragment.class.getSimpleName();
+
+    @FragmentArg
+    int chatId;
 
     public static ChatDetailsFragment newInstance()
     {
@@ -61,6 +65,8 @@ public class ChatDetailsFragment extends Fragment implements ChatDetailsContract
 
         messagesAdapter = new MessagesAdapter(getContext(), chatMessages);
         messageRecyclerView.setAdapter(messagesAdapter);
+
+        presenter.loadChatDetails(chatId);
 
     }
 
