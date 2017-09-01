@@ -3,7 +3,7 @@ package com.litedoid.orachat.api.client;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.litedoid.orachat.ApplicationSettings;
 import com.litedoid.orachat.Constants;
 import com.litedoid.orachat.api.APICallback;
@@ -48,13 +48,10 @@ public class OraChatAPIClient
 
     public OraChatAPIClient()
     {
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.API_ENDPOINT)
-                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
 
         apiService = retrofit.create(OraChatAPIInterface.class);

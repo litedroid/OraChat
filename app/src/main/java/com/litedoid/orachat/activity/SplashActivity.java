@@ -1,6 +1,7 @@
 package com.litedoid.orachat.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
@@ -9,11 +10,8 @@ import com.litedoid.orachat.R;
 import com.litedoid.orachat.controller.auth.AuthActivity_;
 import com.litedoid.orachat.controller.main.MainActivity_;
 
-import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.UiThread;
+import butterknife.ButterKnife;
 
-@EActivity(R.layout.activity_splash)
 public class SplashActivity extends AppCompatActivity
 {
     private static final String TAG = SplashActivity.class.getSimpleName();
@@ -24,24 +22,37 @@ public class SplashActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_splash);
+        ButterKnife.bind(this);
     }
 
-    @UiThread(delay = SPLASH_DURATION)
-    @AfterViews
-    void initViews()
+    @Override
+    protected void onResume()
     {
-        Log.d(TAG, "initViews");
+        super.onResume();
 
-        if (ApplicationSettings.sharedSettings().isLoggedIn())
-        {
-            MainActivity_.intent(SplashActivity.this).start();
-        }
-        else
-        {
-            AuthActivity_.intent(SplashActivity.this).start();
-        }
+        Log.d(TAG, "onResume");
 
-        finish();
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                if (ApplicationSettings.sharedSettings().isLoggedIn())
+                {
+                    MainActivity_.intent(SplashActivity.this).start();
+                }
+                else
+                {
+                    AuthActivity_.intent(SplashActivity.this).start();
+                }
+
+                finish();
+            }
+        }, SPLASH_DURATION);
+
     }
 
 }

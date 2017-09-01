@@ -6,7 +6,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.litedoid.orachat.ApplicationSettings;
-import com.litedoid.orachat.activity.SplashActivity_;
+import com.litedoid.orachat.activity.SplashActivity;
 import com.litedoid.orachat.api.APICallback;
 import com.litedoid.orachat.api.APIErrorType;
 import com.litedoid.orachat.api.client.OraChatAPIClient;
@@ -75,9 +75,9 @@ public class EditProfilePresenter implements EditProfileContract.Presenter
             }
         });
 
-        SplashActivity_.intent(activity)
-                .flags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                .start();
+        Intent intent = new Intent(activity, SplashActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        activity.startActivity(intent);
     }
 
     @Override
